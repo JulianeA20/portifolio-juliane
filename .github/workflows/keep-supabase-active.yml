@@ -1,0 +1,30 @@
+name: Keep Supabase Active
+
+on:
+  schedule:
+    # Executa todos os dias às 3:00 AM UTC (00:00 AM Brasília)
+    - cron: '0 3 * * *'
+  workflow_dispatch: # Permite executar manualmente
+
+jobs:
+  keep-active:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Supabase CLI
+        run: npm install -g @supabase/supabase-js
+
+      - name: Run keep-alive script
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node .github/scripts/keep-supabase-active.js
