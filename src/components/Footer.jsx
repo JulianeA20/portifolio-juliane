@@ -1,40 +1,60 @@
-import './Footer.css';
-
 function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="footer">
-            <div className="container">
-                <div className="footer-content">
-                    <div className="footer-brand">
-                        <div className="logo-text">JA</div>
-                        <p>Criando experiências digitais memoráveis</p>
+        <footer className="bg-[rgba(10,10,15,0.9)] border-t border-white/10 pt-16 pb-8 mt-16">
+            <div className="max-w-[1200px] mx-auto px-8">
+                <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-16 mb-12">
+                    {/* Brand */}
+                    <div>
+                        <div className="text-2xl font-extrabold text-gradient mb-4">JA</div>
+                        <p className="text-text-secondary mt-4">Criando experiências digitais memoráveis</p>
                     </div>
 
-                    <div className="footer-links">
-                        <div className="footer-section">
-                            <h4>Navegação</h4>
-                            <ul>
-                                <li><a href="#home">Início</a></li>
-                                <li><a href="#about">Sobre</a></li>
-                                <li><a href="#work">Trabalhos</a></li>
-                                <li><a href="#experience">Experiência</a></li>
+                    {/* Links */}
+                    <div className="flex gap-16">
+                        <div>
+                            <h4 className="text-white mb-4 text-lg font-semibold">Navegação</h4>
+                            <ul className="flex flex-col gap-3">
+                                {[
+                                    { href: '#home', label: 'Início' },
+                                    { href: '#about', label: 'Sobre' },
+                                    { href: '#work', label: 'Trabalhos' },
+                                    { href: '#experience', label: 'Experiência' },
+                                ].map((link) => (
+                                    <li key={link.href}>
+                                        <a href={link.href}
+                                            className="text-text-secondary no-underline transition-all duration-300
+                                            hover:text-primary-light hover:pl-1.5">
+                                            {link.label}
+                                        </a>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
-
-                        <div className="footer-section">
-                            <h4>Social</h4>
-                            <ul>
-                                <li><a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                                <li><a href="#" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                                <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <div>
+                            <h4 className="text-white mb-4 text-lg font-semibold">Social</h4>
+                            <ul className="flex flex-col gap-3">
+                                {[
+                                    { href: '#', label: 'LinkedIn' },
+                                    { href: '#', label: 'GitHub' },
+                                    { href: '#', label: 'Instagram' },
+                                ].map((link) => (
+                                    <li key={link.label}>
+                                        <a href={link.href} target="_blank" rel="noopener noreferrer"
+                                            className="text-text-secondary no-underline transition-all duration-300
+                                            hover:text-primary-light hover:pl-1.5">
+                                            {link.label}
+                                        </a>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div className="footer-bottom">
+                {/* Bottom */}
+                <div className="pt-8 border-t border-white/5 text-center text-text-muted">
                     <p>&copy; {currentYear} Juliane Almeida. Todos os direitos reservados.</p>
                 </div>
             </div>
